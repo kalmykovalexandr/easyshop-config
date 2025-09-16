@@ -1,0 +1,17 @@
+# Local developer overrides
+spring:
+  config:
+    activate:
+      on-profile: local
+
+easyshop:
+  services:
+    auth: http://localhost:9001
+    product: http://localhost:9002
+    purchase: http://localhost:9003
+  auth:
+    issuer-uri: http://localhost:9001
+  datasource:
+    url: jdbc:postgresql://localhost:5432/easyshop
+    username: easyshop
+    password: easyshop

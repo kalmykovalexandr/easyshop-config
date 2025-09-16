@@ -1,0 +1,36 @@
+server:
+  port: 9003
+
+spring:
+  datasource:
+    url: ${purchase.datasource.url:${easyshop.datasource.url}}
+    username: ${purchase.datasource.username:${easyshop.datasource.username}}
+    password: ${purchase.datasource.password:${easyshop.datasource.password}}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: ${purchase.datasource.schema:purchases}
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    schemas: ${purchase.datasource.schema:purchases}
+    default-schema: ${purchase.datasource.schema:purchases}
+    baseline-on-migrate: true
+  sql:
+    init:
+      mode: never
+
+purchase:
+  datasource:
+    schema: ${PURCHASE_DB_SCHEMA:purchases}
+
+product:
+  service:
+    url: ${PRODUCT_SERVICE_INTERNAL_URL:${easyshop.services.product}}

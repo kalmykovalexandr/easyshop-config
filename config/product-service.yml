@@ -1,0 +1,32 @@
+server:
+  port: 9002
+
+spring:
+  datasource:
+    url: ${product.datasource.url:${easyshop.datasource.url}}
+    username: ${product.datasource.username:${easyshop.datasource.username}}
+    password: ${product.datasource.password:${easyshop.datasource.password}}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: ${product.datasource.schema:products}
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    schemas: ${product.datasource.schema:products}
+    default-schema: ${product.datasource.schema:products}
+    baseline-on-migrate: true
+  sql:
+    init:
+      mode: never
+
+product:
+  datasource:
+    schema: ${PRODUCT_DB_SCHEMA:products}

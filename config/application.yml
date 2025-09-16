@@ -1,0 +1,54 @@
+spring:
+  main:
+    banner-mode: off
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+  mvc:
+    problemdetails:
+      enabled: true
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${easyshop.auth.issuer-uri}
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+
+logging:
+  pattern:
+    level: "%5p [trace:%X{traceId}]"
+  level:
+    root: INFO
+    com.easyshop: INFO
+
+easyshop:
+  services:
+    auth: ${AUTH_SERVICE_URL:http://localhost:9001}
+    product: ${PRODUCT_SERVICE_URL:http://localhost:9002}
+    purchase: ${PURCHASE_SERVICE_URL:http://localhost:9003}
+  auth:
+    issuer-uri: ${EASYSHOP_AUTH_ISSUER_URI:${easyshop.services.auth}}
+  datasource:
+    url: ${EASYSHOP_DB_URL:jdbc:postgresql://localhost:5432/easyshop}
+    username: ${EASYSHOP_DB_USER:easyshop}
+    password: ${EASYSHOP_DB_PASSWORD:easyshop}

@@ -1,0 +1,42 @@
+server:
+  port: 9001
+
+spring:
+  datasource:
+    url: ${auth.datasource.url:${easyshop.datasource.url}}
+    username: ${auth.datasource.username:${easyshop.datasource.username}}
+    password: ${auth.datasource.password:${easyshop.datasource.password}}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: ${auth.datasource.schema:auth}
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    schemas: ${auth.datasource.schema:auth}
+    default-schema: ${auth.datasource.schema:auth}
+    baseline-on-migrate: true
+  sql:
+    init:
+      mode: never
+  security:
+    oauth2:
+      authorizationserver:
+        issuer: ${easyshop.auth.issuer-uri}
+
+auth:
+  datasource:
+    schema: ${AUTH_DB_SCHEMA:auth}
+
+WEBAPP_REDIRECT_URI: ${WEBAPP_REDIRECT_URI:http://localhost:3000/callback}
+WEBAPP_POST_LOGOUT_REDIRECT_URI: ${WEBAPP_POST_LOGOUT_REDIRECT_URI:http://localhost:3000}
+GATEWAY_CLIENT_SECRET: ${GATEWAY_CLIENT_SECRET:gateway-secret}
+PRODUCT_SERVICE_CLIENT_SECRET: ${PRODUCT_SERVICE_CLIENT_SECRET:product-service-secret}
+PURCHASE_SERVICE_CLIENT_SECRET: ${PURCHASE_SERVICE_CLIENT_SECRET:purchase-service-secret}

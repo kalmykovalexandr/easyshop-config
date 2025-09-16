@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+        - RemoveRequestHeader=Cookie
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 10s
+      routes:
+        - id: auth
+          uri: ${easyshop.services.auth}
+          predicates:
+            - Path=/api/auth/**
+        - id: products
+          uri: ${easyshop.services.product}
+          predicates:
+            - Path=/api/products/**
+        - id: purchases
+          uri: ${easyshop.services.purchase}
+          predicates:
+            - Path=/api/purchases/**
+  security:
+    oauth2:
+      client:
+        provider:
+          auth-server:
+            issuer-uri: ${easyshop.auth.issuer-uri}
+        registration:
+          gateway:
+            provider: auth-server
+            client-id: gateway
+            client-secret: ${GATEWAY_CLIENT_SECRET:gateway-secret}
+            authorization-grant-type: client_credentials
+            scope: read,write
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
