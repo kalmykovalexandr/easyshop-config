@@ -1,4 +1,4 @@
-# Production overrides
+# Production environment overrides
 spring:
   config:
     activate:
@@ -6,12 +6,12 @@ spring:
 
 easyshop:
   services:
-    auth: ${PROD_AUTH_SERVICE_URL:https://auth.easyshop.com}
-    product: ${PROD_PRODUCT_SERVICE_URL:https://product.easyshop.com}
-    purchase: ${PROD_PURCHASE_SERVICE_URL:https://purchase.easyshop.com}
+    auth: ${PROD_AUTH_SERVICE_URL}
+    product: ${PROD_PRODUCT_SERVICE_URL}
+    purchase: ${PROD_PURCHASE_SERVICE_URL}
   auth:
-    issuer-uri: ${PROD_AUTH_ISSUER_URI:${easyshop.services.auth}}
+    issuer-uri: ${PROD_AUTH_ISSUER_URI}
   datasource:
-    url: jdbc:postgresql://${PROD_DB_HOST:prod-postgres}:${PROD_DB_PORT:5432}/${PROD_DB_NAME:easyshop}
-    username: ${PROD_DB_USER:easyshop}
-    password: ${PROD_DB_PASSWORD:change-me}
+    url: ${PROD_DB_URL}
+    username: ${PROD_DB_USER}
+    password: ${PROD_DB_PASSWORD}

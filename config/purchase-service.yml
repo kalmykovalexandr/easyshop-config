@@ -3,16 +3,16 @@ server:
 
 spring:
   datasource:
-    url: ${purchase.datasource.url:${easyshop.datasource.url}}
-    username: ${purchase.datasource.username:${easyshop.datasource.username}}
-    password: ${purchase.datasource.password:${easyshop.datasource.password}}
+    url: ${easyshop.datasource.url}
+    username: ${easyshop.datasource.username}
+    password: ${easyshop.datasource.password}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate
     properties:
       hibernate:
-        default_schema: ${purchase.datasource.schema:purchases}
+        default_schema: ${purchase.datasource.schema}
         dialect: org.hibernate.dialect.PostgreSQLDialect
         jdbc:
           lob:
@@ -20,8 +20,8 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
-    schemas: ${purchase.datasource.schema:purchases}
-    default-schema: ${purchase.datasource.schema:purchases}
+    schemas: ${purchase.datasource.schema}
+    default-schema: ${purchase.datasource.schema}
     baseline-on-migrate: true
   sql:
     init:
@@ -29,8 +29,8 @@ spring:
 
 purchase:
   datasource:
-    schema: ${PURCHASE_DB_SCHEMA:purchases}
+    schema: ${PURCHASE_DB_SCHEMA}
 
 product:
   service:
-    url: ${PRODUCT_SERVICE_INTERNAL_URL:${easyshop.services.product}}
+    url: ${PRODUCT_SERVICE_INTERNAL_URL}

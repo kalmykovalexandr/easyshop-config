@@ -1,4 +1,4 @@
-# Shared dev environment defaults
+# Dev environment overrides
 spring:
   config:
     activate:
@@ -6,12 +6,12 @@ spring:
 
 easyshop:
   services:
-    auth: ${DEV_AUTH_SERVICE_URL:https://auth.dev.easyshop.internal}
-    product: ${DEV_PRODUCT_SERVICE_URL:https://product.dev.easyshop.internal}
-    purchase: ${DEV_PURCHASE_SERVICE_URL:https://purchase.dev.easyshop.internal}
+    auth: ${DEV_AUTH_SERVICE_URL}
+    product: ${DEV_PRODUCT_SERVICE_URL}
+    purchase: ${DEV_PURCHASE_SERVICE_URL}
   auth:
-    issuer-uri: ${DEV_AUTH_ISSUER_URI:${easyshop.services.auth}}
+    issuer-uri: ${DEV_AUTH_ISSUER_URI}
   datasource:
-    url: jdbc:postgresql://${DEV_DB_HOST:dev-postgres}:${DEV_DB_PORT:5432}/${DEV_DB_NAME:easyshop}
-    username: ${DEV_DB_USER:easyshop_dev}
-    password: ${DEV_DB_PASSWORD:change-me}
+    url: ${DEV_DB_URL}
+    username: ${DEV_DB_USER}
+    password: ${DEV_DB_PASSWORD}

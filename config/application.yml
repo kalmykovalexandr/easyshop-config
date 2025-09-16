@@ -43,12 +43,12 @@ logging:
 
 easyshop:
   services:
-    auth: ${AUTH_SERVICE_URL:http://localhost:9001}
-    product: ${PRODUCT_SERVICE_URL:http://localhost:9002}
-    purchase: ${PURCHASE_SERVICE_URL:http://localhost:9003}
+    auth: ${AUTH_SERVICE_URL}
+    product: ${PRODUCT_SERVICE_URL}
+    purchase: ${PURCHASE_SERVICE_URL}
   auth:
-    issuer-uri: ${EASYSHOP_AUTH_ISSUER_URI:${easyshop.services.auth}}
+    issuer-uri: ${EASYSHOP_AUTH_ISSUER_URI}
   datasource:
-    url: ${EASYSHOP_DB_URL:jdbc:postgresql://localhost:5432/easyshop}
-    username: ${EASYSHOP_DB_USER:easyshop}
-    password: ${EASYSHOP_DB_PASSWORD:easyshop}
+    url: ${EASYSHOP_DB_URL}
+    username: ${EASYSHOP_DB_USER}
+    password: ${EASYSHOP_DB_PASSWORD}

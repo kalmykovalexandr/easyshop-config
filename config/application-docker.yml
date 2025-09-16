@@ -1,17 +1,5 @@
-# Docker Compose overrides
+# Docker Compose profile
 spring:
   config:
     activate:
       on-profile: docker
-
-easyshop:
-  services:
-    auth: http://auth-service:9001
-    product: http://product-service:9002
-    purchase: http://purchase-service:9003
-  auth:
-    issuer-uri: http://auth-service:9001
-  datasource:
-    url: jdbc:postgresql://db:5432/easyshop
-    username: ${POSTGRES_USER:easyshop}
-    password: ${POSTGRES_PASSWORD:easyshop}
