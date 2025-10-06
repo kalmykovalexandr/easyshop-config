@@ -1,4 +1,4 @@
-spring:
+﻿spring:
   main:
     banner-mode: off
   jackson:
@@ -48,6 +48,7 @@ easyshop:
     purchase: ${PURCHASE_SERVICE_URL}
   auth:
     issuer-uri: ${EASYSHOP_AUTH_ISSUER_URI}
+    allowed-origins: ${EASYSHOP_AUTH_ALLOWED_ORIGINS:http://localhost:5173}
   datasource:
     url: ${EASYSHOP_DB_URL}
     username: ${EASYSHOP_DB_USER}

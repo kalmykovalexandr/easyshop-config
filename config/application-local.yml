@@ -1,4 +1,4 @@
-# Local developer overrides
+﻿# Local developer overrides
 spring:
   config:
     activate:
@@ -11,6 +11,7 @@ easyshop:
     purchase: http://localhost:9003
   auth:
     issuer-uri: http://localhost:9001
+    allowed-origins: http://localhost:5173
   datasource:
     url: jdbc:postgresql://localhost:5432/easyshop
     username: easyshop
