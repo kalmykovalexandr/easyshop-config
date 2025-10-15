@@ -35,6 +35,24 @@ auth:
   datasource:
     schema: ${AUTH_DB_SCHEMA}
 
+# EasyShop Security Configuration
+easyshop:
+  auth:
+    # Email verification code settings (Production-grade defaults)
+    verification-code-length: ${VERIFICATION_CODE_LENGTH:6}
+    verification-ttl-minutes: ${VERIFICATION_TTL_MINUTES:10}
+    verification-max-attempts: ${VERIFICATION_MAX_ATTEMPTS:3}
+    verification-resend-cooldown-seconds: ${VERIFICATION_RESEND_COOLDOWN_SECONDS:120}
+
+    # IP-based rate limiting
+    verification-ip-rate-limit-enabled: ${VERIFICATION_IP_RATE_LIMIT_ENABLED:true}
+    verification-ip-max-attempts: ${VERIFICATION_IP_MAX_ATTEMPTS:10}
+    verification-ip-window-minutes: ${VERIFICATION_IP_WINDOW_MINUTES:60}
+
+  mail:
+    from-email: ${MAIL_FROM_EMAIL:noreply@easyshop.com}
+    from-name: ${MAIL_FROM_NAME:EasyShop}
+
 WEBAPP_REDIRECT_URI: ${WEBAPP_REDIRECT_URI:http://localhost:5173/auth/callback}
 WEBAPP_POST_LOGOUT_REDIRECT_URI: ${WEBAPP_POST_LOGOUT_REDIRECT_URI:http://localhost:5173}
 GATEWAY_CLIENT_SECRET: ${GATEWAY_CLIENT_SECRET}

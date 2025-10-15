@@ -12,7 +12,18 @@ easyshop:
   auth:
     issuer-uri: http://localhost:9001
     allowed-origins: http://localhost:5173
+    # Email verification security (Production-grade)
+    verification-code-length: 6
+    verification-ttl-minutes: 10
+    verification-max-attempts: 3
+    verification-resend-cooldown-seconds: 120
+    verification-ip-rate-limit-enabled: true
+    verification-ip-max-attempts: 10
+    verification-ip-window-minutes: 60
   datasource:
     url: jdbc:postgresql://localhost:5432/easyshop
     username: easyshop
     password: easyshop
+  mail:
+    from-email: ${MAIL_FROM_EMAIL:noreply@easyshop.com}
+    from-name: ${MAIL_FROM_NAME:EasyShop}

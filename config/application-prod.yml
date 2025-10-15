@@ -11,7 +11,18 @@ easyshop:
     purchase: ${PROD_PURCHASE_SERVICE_URL}
   auth:
     issuer-uri: ${PROD_AUTH_ISSUER_URI}
+    # Email verification security (Production-grade)
+    verification-code-length: 6
+    verification-ttl-minutes: 10
+    verification-max-attempts: 3
+    verification-resend-cooldown-seconds: 120
+    verification-ip-rate-limit-enabled: true
+    verification-ip-max-attempts: 10
+    verification-ip-window-minutes: 60
   datasource:
     url: ${PROD_DB_URL}
     username: ${PROD_DB_USER}
     password: ${PROD_DB_PASSWORD}
+  mail:
+    from-email: ${MAIL_FROM_EMAIL:noreply@easyshop.com}
+    from-name: ${MAIL_FROM_NAME:EasyShop}

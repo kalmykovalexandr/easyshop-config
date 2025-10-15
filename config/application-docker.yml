@@ -3,3 +3,17 @@ spring:
   config:
     activate:
       on-profile: docker
+
+easyshop:
+  auth:
+    # Email verification security (Production-grade)
+    verification-code-length: 6
+    verification-ttl-minutes: 10
+    verification-max-attempts: 3
+    verification-resend-cooldown-seconds: 120
+    verification-ip-rate-limit-enabled: true
+    verification-ip-max-attempts: 10
+    verification-ip-window-minutes: 60
+  mail:
+    from-email: ${MAIL_FROM_EMAIL:noreply@easyshop.com}
+    from-name: ${MAIL_FROM_NAME:EasyShop}
