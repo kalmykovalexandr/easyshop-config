@@ -13,7 +13,7 @@ easyshop:
     issuer-uri: http://localhost:9001
     allowed-origins: http://localhost:5173
     # Email verification security (Production-grade)
-    verification-code-length: 6
+    verification-code-length: 8
     verification-ttl-minutes: 10
     verification-max-attempts: 3
     verification-resend-cooldown-seconds: 120

@@ -7,7 +7,7 @@ spring:
 easyshop:
   auth:
     # Email verification security (Production-grade)
-    verification-code-length: 6
+    verification-code-length: 8
     verification-ttl-minutes: 10
     verification-max-attempts: 3
     verification-resend-cooldown-seconds: 120
